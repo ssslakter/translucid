@@ -9,11 +9,13 @@ dependencies = [
     "torch",
     "torchvision",
     "fastcore",
-    "fastprogress"
+    "fastprogress",
+    "matplotlib"
 ]
 
 optional-dependencies = { "dev"= [
-    "nbdev"] }
+    "nbdev",
+    "ipywidgets"] }
 
 [tool.setuptools]
 packages = ["translucid"]
