@@ -9,7 +9,7 @@ from torch import nn
 from collections import OrderedDict
 
 
-# %% ../../nbs/01_hooks.ipynb 6
+# %% ../../nbs/01_hooks.ipynb 4
 class CancelFitException(Exception): pass
 
 
