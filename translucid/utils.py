@@ -1,4 +1,7 @@
+import torch
 import operator
+
+__all__ = ['to_repr', 'op2str', 'to_cpu', 'to_device', 'default_device']
 
 
 def to_repr(func_name, **kwargs):
@@ -14,3 +17,11 @@ def op2str(op):
         operator.truediv: '/',
         operator.pow: '**'
     }[op]
+
+
+def to_cpu(x: torch.Tensor): return x.cpu().detach()
+
+default_device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+def to_device(x: torch.Tensor, device=default_device): 
+    return x.to(device)
