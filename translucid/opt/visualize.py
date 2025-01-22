@@ -18,11 +18,11 @@ class Visualizer:
         self.tfms = tfms or default_transforms(target.orig_shape[-1])
         if not callable(self.tfms): self.tfms = T.Compose(self.tfms)
     
-    def visualize(self, x: ImageParam = None, lr = 5e-2, n_iter = 1000, param_kwargs=None):
+    def visualize(self, x: ImageParam = None, lr = 5e-2, n_iter = 1000, mb=None, param_kwargs=None):
         _x = fc.ifnone(x, self.target)
         optim = self.optim([_x], lr=lr)
         
-        pb = progress_bar(range(n_iter))
+        pb = progress_bar(range(n_iter), parent=mb)
         for i in pb:
             optim.zero_grad()
             x = self.prep_x(_x, param_kwargs)
