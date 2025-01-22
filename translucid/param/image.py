@@ -113,8 +113,8 @@ class ImageParam(TensorBase):
         else: data = torch.randn(shape, dtype=torch.float32) * sd
         return ImageParam(data=data, device=device, fft=fft, orig_shape=shape, dp=dp, **kwargs)
 
-    def to_img(self, clamp=False, dp=1.6, decorr=None):
-        img = fft2img(self, self.orig_shape, scale=1.0, decay_power=dp) if self.fft else self
+    def to_img(self, clamp=False, dp=None, decorr=None):
+        img = fft2img(self, self.orig_shape, scale=1.0, decay_power=dp or self.dp) if self.fft else self
         img = decorr_colors(img) if fc.ifnone(decorr,self.decorr) else img
         img.fft, img.decorr = False, False
         return to_valid_range(img, clamp=clamp)
