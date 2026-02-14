@@ -57,10 +57,9 @@ res = vis.visualize(n_iter=1000, param_kwargs={'dp':0.9}, lr=0.01)
 _ = res[0].show()
 ```
 
-``` html
+
 <div>
 <progress max="1000" value="1000"></progress> 100.00% [1000/1000 00:36&lt;00:00... Loss: -7.3032636642456055]</div>
-```
 
     Iteration 0, loss: -0.0
     Iteration 100, loss: -1.4929367303848267
