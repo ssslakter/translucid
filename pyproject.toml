@@ -1,22 +1,36 @@
 [build-system]
-requires = ["setuptools>=64.0"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "translucid"
-version = "0.1.0"
-dependencies = [
-    "torch",
-    "torchvision",
-    "fastcore",
-    "fastprogress",
-    "matplotlib"
-]
+dynamic = ["version"]
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Slava Chaunin", email = "67190162+Ssslakter@users.noreply.github.com"}]
+dependencies = ["torchvision", "nbdev", "jupyter>=1.1.1,<2", "matplotlib>=3.10.8,<4", "fastprogress>=1.1.5,<2", "plotly>=6.5.2,<7"]
 
-optional-dependencies = { "dev"= [
-    "nbdev",
-    "ipywidgets"] }
+[project.urls]
+Repository = "https://github.com/ssslakter/translucid"
+Documentation = "https://ssslakter.github.io/translucid"
 
-[tool.setuptools]
-packages = ["translucid"]
-package-dir ={ "translucid" = "translucid" }
+[project.entry-points.nbdev]
+translucid = "translucid._modidx:d"
+
+[tool.setuptools.dynamic]
+version = {attr = "translucid.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["translucid"]
+
+[tool.nbdev]
+readme_nb = "index.ipynb"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.pypi-dependencies]
+translucid = { path = ".", editable = true }
